@@ -36,12 +36,14 @@ int main() {
     } while (userSize > 10);
 
     // TODO: create the dynamic memory
-
+    dynArr = new string[userSize];
     // call the functions
     populate(dynArr, userSize);
     printFoods(dynArr, userSize);
 
     // TODO: release the dynamic memory to avoid a memory leak
+    delete[] dynArr;
+    dynArr = nullptr;
 
     // terminate
     return 0;
@@ -62,6 +64,10 @@ int main() {
 
 void populate(string* arrPtr, const unsigned ARR_SIZE) {
     // TODO
+    for (unsigned i = 0; i < ARR_SIZE; ++i) {
+        cout << "Enter food item " << (i + 1) << ": ";
+        cin >> arrPtr[i];
+    }
 }
 
 /*******************************************************************************
@@ -79,5 +85,9 @@ void populate(string* arrPtr, const unsigned ARR_SIZE) {
 *******************************************************************************/
 
 void printFoods(string* arrPtr, const unsigned ARR_SIZE) {
+    for(unsigned i = 0; i < ARR_SIZE; ++i) {
+        cout << "Food item " << (i + 1) << ": " << arrPtr[i]
+             << " (Address: " << &arrPtr[i] << ")" << endl;
+    }
     // TODO
 }
